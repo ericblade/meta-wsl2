@@ -1,41 +1,17 @@
-This README file contains information on the contents of the meta-wsl2 layer.
+Yocto layer for building qemux86{-64} compatible images into a format that can also be run in WSL2.
 
-Please see the corresponding sections below for details.
+Add this layer to your Yocto configuration with ```bitbake-layers add-layer```.
+Run
+```bash
+MACHINE=wsl-x86 bitbake (your image name)
+```
+The -rootfs.tar.gz that results from the build can be directly imported into WSL2 with
+```bash
+wsl.exe --import (DistroName) (c:\path\to\store\VHDX\file) (path-to-rootfs.tar.gz)
+```
 
-Dependencies
-============
+After import is complete, you may launch the distro from Windows Terminal, or with
+```bash
+wsl.exe -D (DistroName)
+```
 
-  URI: <first dependency>
-  branch: <branch name>
-
-  URI: <second dependency>
-  branch: <branch name>
-
-  .
-  .
-  .
-
-Patches
-=======
-
-Please submit any patches against the meta-wsl2 layer to the xxxx mailing list (xxxx@zzzz.org)
-and cc: the maintainer:
-
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
-
-Table of Contents
-=================
-
-  I. Adding the meta-wsl2 layer to your build
- II. Misc
-
-
-I. Adding the meta-wsl2 layer to your build
-=================================================
-
-Run 'bitbake-layers add-layer meta-wsl2'
-
-II. Misc
-========
-
---- replace with specific information about the meta-wsl2 layer ---
