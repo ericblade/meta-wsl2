@@ -11,4 +11,5 @@ Nameservers=172.29.240.1
 " >> ${D}/var/lib/connman/wslnetwork.config
 }
 
-FILES_${PN}:append = " /var/lib/connman"
+FILES:${PN}:append = " /var/lib/connman/wslnetwork.config"
+
