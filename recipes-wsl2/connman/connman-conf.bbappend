@@ -10,3 +10,5 @@ IPv4=172.29.242.41/255.255.0.0/172.29.240.1
 Nameservers=172.29.240.1
 " >> ${D}/var/lib/connman/wslnetwork.config
 }
+
+FILES_${PN}:append = " /var/lib/connman"
