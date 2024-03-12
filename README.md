@@ -17,11 +17,11 @@ wsl.exe -D (DistroName)
 
 MACHINEs provided:
 
-qemuwsl86{-64}: Can be used to build existing qemux86{-64} image targets. Resets MACHINE to qemux86{-64} after setting necessary flags, so remains compatible with existing image recipes.
+qemuwslx86{-64}: Can be used to build existing qemux86{-64} image targets. Resets MACHINE to qemux86{-64} after setting necessary flags, so remains compatible with existing image recipes.
 
-wsl86{-64}: Use if your DISTRO wants to supply an image target recipe that specifically targets wsl.  This leaves the MACHINE set to the selected one.
+wslx86{-64}: Use if your DISTRO wants to supply an image target recipe that specifically targets wsl.  This leaves the MACHINE set to the selected one.
 
-If you use wsl86{-64}, you should be able to get away with building an image with options something like:
+If you use wslx86{-64}, you should be able to get away with building an image with options something like:
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-dummy" # don't bother compiling a kernel
 IMAGE_FSTYPES = ".tar.gz" # don't bother with images beyond the -rootfs.tar.gz, you don't need boot files and stuff
