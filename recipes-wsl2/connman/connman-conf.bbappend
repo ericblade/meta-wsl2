@@ -1,4 +1,5 @@
 do_install:append() {
+    install -d ${D}/var/lib/connman
     echo "[global]
 Name=WSL Network
 Description=WSL Network
