@@ -3,5 +3,4 @@
 do_install:append:class-target() {
     install -d ${D}${QT6_INSTALL_PLUGINSDIR}
     cp -r ${B}/lib/plugins/* ${D}${QT6_INSTALL_PLUGINSDIR}
-    #install ${B}/lib/plugins/* ${D}${QT6_INSTALL_PLUGINSDIR}
 }
