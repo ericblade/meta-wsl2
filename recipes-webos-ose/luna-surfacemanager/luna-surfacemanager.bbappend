@@ -1,6 +1,4 @@
-SRC_URI = "git://www.github.com/ericblade/luna-surfacemanager.git;branch=getAppLaunchEnvironment"
-
-SRC_URI:append:luneos = "\
+SRC_URI = "git://www.github.com/ericblade/luna-surfacemanager.git;branch=getAppLaunchEnvironment \
     file://0001-Add-capability-to-pass-extra-options-to-surface-mana.patch \
     file://0002-WebOSShellSurface-add-setClientSize.patch \
     file://0003-webosscreenshot-respect-QT_OPENGL_ES.patch \
@@ -16,7 +14,7 @@ SRC_URI:append:luneos = "\
 "
 SRCREV = "aceeec568ae4facf7a6bc0d80868851c35bb044c"
 
-do_install:append:luneos() {
+do_install:append() {
     # TODO: probably should invent a better way to handle setting these variables, in conjunction with meta-webos and meta-luneos
 
     # remove display searching from surface-manager startup, as WSL does not support DRM devices
@@ -36,10 +34,9 @@ do_install:append:luneos() {
     echo "ln -sf /run/user/0 /tmp/luna-session" >> ${D}/etc/surface-manager.d/product.env
 }
 
-install_units:append:luneos() {
+install_units:append() {
     #TODO: there's probably a variable that holds /usr/lib/systemd?
-    scriptPath="/usr/lib/systemd/system/surface-manager.service"
-    script=${D}${scriptPath}
+    script=${D}/usr/lib/systemd/system/surface-manager.service
 
     sed -i '/ExecStartPre=\/bin\/mkdir -p \/tmp\/luna-session/d' $script
     sed -i '/ExecStartPre=-\/bin\/ln -s \/tmp\/luna-session \/var\/run\/xdg/d' $script
