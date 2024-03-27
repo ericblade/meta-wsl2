@@ -24,7 +24,7 @@ do_install:append:luneos() {
     # setup LSM to run with display name wayland-1 for webOS/LuneOS apps to use
     echo "export WAYLAND_DISPLAY_LSM=wayland-1" >> ${D}/etc/surface-manager.d/product.env
     # setup LSM to output using wayland, so WSLg can display it
-    echo "export WEBOS_COMPOSITOR_PLATFORM=wayland" >> ${D}/etc/surface-manager.d/product.env
+    echo "export WEBOS_COMPOSITOR_PLATFORM=wayland-egl" >> ${D}/etc/surface-manager.d/product.env
     # setup LSM to output to WSLg's wayland-0 display
     echo "export WAYLAND_DISPLAY=wayland-0" >> ${D}/etc/surface-manager.d/product.env
     # setup xdg runtime socket directory to WSLg's
