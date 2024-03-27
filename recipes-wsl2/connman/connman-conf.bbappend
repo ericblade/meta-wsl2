@@ -1,3 +1,7 @@
+# TODO: This does NOT work for everyone!  Apparently networking configuration in WSL can be quite complex, and so we need to
+# either find a way to disable connman's functionality without destroying it completely, as many other pieces of systems may depend upon it,
+# or configure the network more intelligently than just jamming it with an IP.
+
 do_install:append() {
     install -d ${D}/var/lib/connman
     echo "[global]

@@ -15,7 +15,5 @@ SRC_URI:append:luneos = "\
 SRCREV = "c58b7a502390c96ac55b443b272799cfc4e2d6fd"
 
 do_compile:prepend:luneos() {
-    if ${@bb.utils.contains('DISTRO', 'luneos', 'true', 'false', d)}; then
-        sed -i '/runningApp->getLinuxProcess().addEnv("XDG_RUNTIME_DIR", "\/tmp\/luna-session");/d' ${S}/src/bus/client/NativeContainer.cpp
-    fi
+    sed -i '/runningApp->getLinuxProcess().addEnv("XDG_RUNTIME_DIR", "\/tmp\/luna-session");/d' ${S}/src/bus/client/NativeContainer.cpp
 }
