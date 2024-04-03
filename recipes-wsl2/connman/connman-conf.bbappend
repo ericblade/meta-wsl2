@@ -1,19 +1,5 @@
-# TODO: This does NOT work for everyone!  Apparently networking configuration in WSL can be quite complex, and so we need to
-# either find a way to disable connman's functionality without destroying it completely, as many other pieces of systems may depend upon it,
-# or configure the network more intelligently than just jamming it with an IP.
+# TODO: may need to figure out how to do this for other distros, as the main.conf is provided by luneos's recipe
 
-do_install:append() {
-    install -d ${D}/var/lib/connman
-    echo "[global]
-Name=WSL Network
-Description=WSL Network
-
-[service_ethernet]
-Type=ethernet
-IPv4=172.29.242.41/255.255.0.0/172.29.240.1
-Nameservers=172.29.240.1
-" >> ${D}/var/lib/connman/wslnetwork.config
+do_install:append:luneos() {
+    sed -i "s/NetworkInterfaceBlacklist = usb/NetworkInterfaceBlacklist=eth,lo,usb/" ${D}${sysconfdir}/connman/main.conf
 }
-
-FILES:${PN}:append = " /var/lib/connman/wslnetwork.config"
-
