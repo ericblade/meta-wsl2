@@ -1,5 +1,9 @@
-# TODO: may need to figure out how to do this for other distros, as the main.conf is provided by luneos's recipe
+# TODO: delete the line from the config, then adding it should work universally, rather than seding or patching it in luneos and adding it elsewhere
 
 do_install:append:luneos() {
     sed -i "s/NetworkInterfaceBlacklist = usb/NetworkInterfaceBlacklist=eth,lo,usb/" ${D}${sysconfdir}/connman/main.conf
+}
+
+do_install:append:webos() {
+    echo "NetworkInterfaceBlacklist=eth,lo,usb" >> ${D}${sysconfdir}/connman/main.conf
 }

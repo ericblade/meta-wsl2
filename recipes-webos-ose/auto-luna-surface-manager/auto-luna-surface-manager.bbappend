@@ -1,22 +1,5 @@
-SRC_URI = "git://www.github.com/ericblade/luna-surfacemanager.git;branch=getAppLaunchEnvironment"
-
-SRC_URI:append:luneos = "\
-    file://0001-Add-capability-to-pass-extra-options-to-surface-mana.patch \
-    file://0002-WebOSShellSurface-add-setClientSize.patch \
-    file://0003-webosscreenshot-respect-QT_OPENGL_ES.patch \
-    file://0004-DefaultSettings.qml-Use-Prelude-for-LuneOS.patch \
-    file://0005-Update-com.webos.surfacemanager.role.json.in.patch \
-    file://0006-product.env.in-Make-it-work-with-non-drm-devices.patch \
-    file://0007-Add-additional-permissions-for-org.webosports.notifi.patch \
-    file://0008-base.pro-Remove-building-of-tests.patch \
-    file://0009-com.webos.surfacemanager.perm.json-Add-permissions-f.patch \
-    file://0010-qmldir-expose-NotificationService-component.patch \
-    file://0011-Input-panel-tie-inputPanelRect-to-the-window-mask.patch \
-    file://0012-WebOSSurfaceItem-close-Wayland-client-fallback-on-Cl.patch \
-"
-SRCREV = "aceeec568ae4facf7a6bc0d80868851c35bb044c"
-
-RDEPENDS:${PN}:luneos += " libglibutil"
+# TODO: this is currently identical to luna-surfacemanager.bbappend::do_install:append
+# how can we reuse this....
 
 do_install:append() {
     # TODO: probably should invent a better way to handle setting these variables, in conjunction with meta-webos and meta-luneos
@@ -40,13 +23,4 @@ do_install:append() {
     # eliminate the default XDG_RUNTIME_DIR and link the WSL runtime dir to where it used to be, to catch any apps that might not get XDG updated
     echo "rm -rf /tmp/luna-session" >> ${D}/etc/surface-manager.d/product.env
     echo "ln -sf /run/user/0 /tmp/luna-session" >> ${D}/etc/surface-manager.d/product.env
-}
-
-install_units:append() {
-    #TODO: there's probably a variable that holds /usr/lib/systemd?
-    scriptPath="/usr/lib/systemd/system/surface-manager.service"
-    script=${D}${scriptPath}
-
-    sed -i '/ExecStartPre=\/bin\/mkdir -p \/tmp\/luna-session/d' $script
-    sed -i '/ExecStartPre=-\/bin\/ln -s \/tmp\/luna-session \/var\/run\/xdg/d' $script
 }
